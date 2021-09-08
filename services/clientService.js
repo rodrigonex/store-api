@@ -12,6 +12,14 @@ class ClientService{
   async getClient(id){
     return await clientRepository.getClient(id) 
   }
+
+  async deleteClient(id){
+    await clientRepository.deleteClient(id) 
+  }
+
+  async updateClient(id, client){
+    return await clientRepository.updateClient(id, client) 
+  }
   
 }
 

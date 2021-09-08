@@ -31,6 +31,7 @@ app.use("/client", clientRouter);
 app.use("/product", productRouter);
 app.use("/supplier", saleRouter);
 app.use("/sale", supplierRouter);
+
 app.use((err, req, res, next) => {
   logger.error(`${req.method} ${req.baseUrl} - ${err.message}`);
   res.status(400).send({error: err.message})

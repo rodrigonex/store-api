@@ -34,6 +34,31 @@ class ClientController {
       next(err)
     }
   }
+
+  async deleteClient(req, res, next){
+    try{
+      await ClientService.deleteClient(req.params.id);
+      res.end()
+      logger.info("POST / delete")
+    }catch(err){
+      next(err)
+    }
+  }
+
+  async updateClient(req, res, next){
+    try{
+      const client = req.body
+      const {id} =req.params
+      if(!client.name || !client.cpf || !client.phone || !client.email || !client.andress || !id){
+        throw new Error("Name, cpf, phone, email e address são obrigatorios.")
+      } 
+      const result = await ClientService.updateClient(id, client);
+      res.send(result);
+      logger.info("POST / delete")
+    }catch(err){
+      next(err)
+    }
+  }
 }
 
 export default new ClientController()
